@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-#Author: Jakub Jon
+#Author: lnotspotl
 
 class RestController(object):
     def __init__(self, default_stance):

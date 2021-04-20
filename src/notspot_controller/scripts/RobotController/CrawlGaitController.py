@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Author: mike4192 https://github.com/mike4192/spotMicro
-# Modified by: Jakub Jon
+# Modified by: lnotspotl
 
 import numpy as np
 from . GaitController import GaitController

@@ -1,5 +1,5 @@
-#!/usr/bin/env python
-#Author: Jakub Jon
+#!/usr/bin/env python3
+#Author: lnotspotl
 
 import rospy
 

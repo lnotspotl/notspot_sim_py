@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-#Author: Jakub Jon
+#Author: lnotspotl
 
 import rospy
 import numpy as np
