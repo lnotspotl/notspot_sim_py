@@ -1,6 +1,8 @@
 # Notspot robot simulation
 This repository contains all the files and code needed to simulate the notspot quadrupedal robot using Gazebo and ROS.
+
 http://gazebosim.org/
+
 https://www.ros.org/
 
 ## Setup
