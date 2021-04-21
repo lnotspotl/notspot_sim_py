@@ -1,10 +1,13 @@
 # Notspot robot simulation
 
-## Installation  
+## Setup
 ```
 cd src && catkin_init_workspace
 cd .. && catkin_make
 source devel/setup.bash
+roscd notspot_controller/scripts && chmod +x robot_controller_gazebo.py
+cp -r RoboticsUtilities ~/.local/lib/python3.8/site-packages
+roscd notspot_joystick/scripts && chmod +x ramped_joystick.py
 ```
 
 
