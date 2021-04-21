@@ -1,6 +1,13 @@
 # Notspot robot simulation
 
 ## Installation  
+```
+cd src && catkin_init_workspace
+cd .. && catkin_make
+source devel/setup.bash
+```
+
+
 This repository contains all the code and files needed to simulate the notspot quadrupedal robot using Gazebo and ROS.
 
 This code has been tested on ROS noetic, so it might not work for other ROS versions.
