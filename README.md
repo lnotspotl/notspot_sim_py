@@ -3,7 +3,7 @@ This repository contains all the code and files needed to simulate the notspot q
 
 This code has been tested on ROS noetic, so it might not work for other ROS versions.
 
-If you happen to have problems with importing the Transformations module, make sure that the python folder RoboticsUtilities (notspot_sim/src/notspot_controller/scripts/RoboticsUtilities) is somewhere, from where python3 can import it. You can copy this folder together with all the files which is contains to this path: ~/.local/lib/python3.8/site-packages/
+If you happen to have problems with importing the Transformations module, make sure that the python folder RoboticsUtilities (notspot_sim/src/notspot_controller/scripts/RoboticsUtilities) is somewhere, from where python3 can import it. You can copy this folder together with all the files which it contains to this path: ~/.local/lib/python3.8/site-packages/
 
 After you've downloaded this git repository, go to the src folder and init the workspace (catkin_init_workspace).
 After that, simply got to the parent folder and run catkin_make. This compiles all the code and you're ready to start your simulation.
