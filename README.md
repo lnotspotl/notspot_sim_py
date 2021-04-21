@@ -21,8 +21,11 @@ roslaunch notspot run_robot_gazebo.launch
 ```
 After all the nodes have started, you can start using your joystick to control the robot.
 
+## Other notes
+This is my first open-source project, so I'm not that experienced with github just yet.
 
-This is my first github repo, I'm not that experienced with it thus far so I'm sorry for not being that much professional. I'll get better over time.
+I'll be adding new stuff to this repository over time, so this is not the final version.
+I'd like to make all the 3D models open-source, so that anybody can build this robot at home.
 
 ## Credits:
  - mike4192: https://github.com/mike4192/spotMicro
