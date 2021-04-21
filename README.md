@@ -1,4 +1,7 @@
 # Notspot robot simulation
+This repository contains all the files and code needed to simulate the notspot quadrupedal robot using Gazebo and ROS.
+http://gazebosim.org/
+https://www.ros.org/
 
 ## Setup
 ```
@@ -8,6 +11,12 @@ source devel/setup.bash
 roscd notspot_controller/scripts && chmod +x robot_controller_gazebo.py
 cp -r RoboticsUtilities ~/.local/lib/python3.8/site-packages
 roscd notspot_joystick/scripts && chmod +x ramped_joystick.py
+```
+
+## Run
+```
+source devel/setup.bash
+roslaunch notspot run_robot_gazebo.launch
 ```
 
 
