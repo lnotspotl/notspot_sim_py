@@ -19,7 +19,7 @@ roscd notspot_joystick/scripts && chmod +x ramped_joystick.py
 source devel/setup.bash
 roslaunch notspot run_robot_gazebo.launch
 ```
-After all the nodes have started, you can use your joystick to control the robot.
+After all the nodes have started, you can start using your joystick to control the robot.
 
 
 This is my first github repo, I'm not that experienced with it thus far so I'm sorry for not being that much professional. I'll get better over time.
