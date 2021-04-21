@@ -28,5 +28,5 @@ This is my first open-source project, so I'm not that experienced with github ju
 I'll be adding new stuff to this repository over time, so this is not the final version.
 I'd like to make all the 3D models open-source, so that anybody can build this robot at home.
 
-## Credits:
+## Credits
  - mike4192: https://github.com/mike4192/spotMicro
