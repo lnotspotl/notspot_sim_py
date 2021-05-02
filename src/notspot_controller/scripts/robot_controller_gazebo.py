@@ -7,7 +7,6 @@ from sensor_msgs.msg import Joy,Imu
 from RobotController import RobotController
 from InverseKinematics import robot_IK
 from std_msgs.msg import Float64
-from notspot_msgs.msg import JointAngles
 
 USE_IMU = True
 RATE = 60

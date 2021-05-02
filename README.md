@@ -22,6 +22,24 @@ roslaunch notspot run_robot_gazebo.launch
 ```
 After all the nodes have started, you can start using your joystick to control the robot.
 
+## Controllers
+There's four different controllers, which make it easy to control the robot. These 4 controllers are: 
+Rest controller, Stand Controller, Trot gait controller and Crawl gait controller. They were all developed in
+Gazebo.
+
+### Rest Controller
+<img src="resources/rest_controller.gif" width="400">
+
+### Stand Controller
+<img src="resources/stand_controller.gif" width="400">
+
+### Trot Gait Controller
+<img src="resources/trot_gait_controller.gif" width="400">
+
+### Crawl Gait Controller
+<img src="resources/crawl_gait_controller.gif" width="400">
+
+
 ## Other notes
 This is my first open-source project, so I'm not that experienced with github just yet.
 
