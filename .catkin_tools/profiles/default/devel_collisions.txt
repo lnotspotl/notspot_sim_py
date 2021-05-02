@@ -1,1 +1,0 @@
-/home/kuba/notspot_sim/devel/./cmake.lock 10
