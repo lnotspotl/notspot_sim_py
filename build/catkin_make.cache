@@ -1,2 +1,0 @@
-notspot:notspot_controller:notspot_description:notspot_gazebo:notspot_joystick
--DCATKIN_DEVEL_PREFIX=/home/kuba/github_projects/notspot_sim/devel -DCMAKE_INSTALL_PREFIX=/home/kuba/github_projects/notspot_sim/install -G Unix Makefiles
