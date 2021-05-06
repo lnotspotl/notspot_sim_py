@@ -29,7 +29,7 @@ class TrotGaitController(GaitController):
         super().__init__(stance_time, swing_time, time_step, contact_phases, default_stance)
 
         self.max_x_velocity = 0.024 #[m/s] 
-        self.max_y_velocity = 0.012 #[m/s]
+        self.max_y_velocity = 0.015 #[m/s]
         self.max_yaw_rate = 0.6 #[rad/s]
 
         self.swingController = TrotSwingController(self.stance_ticks, self.swing_ticks, self.time_step,
