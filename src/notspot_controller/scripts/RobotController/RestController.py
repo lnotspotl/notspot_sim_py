@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 #Author: lnotspotl
 
-from . PIDController import PID_controller
-from RoboticsUtilities.Transformations import rotxyz
 import rospy
 import numpy as np
+from RoboticsUtilities.Transformations import rotxyz
+from . PIDController import PID_controller
 
 class RestController(object):
     def __init__(self, default_stance):

@@ -62,9 +62,3 @@ class PID_controller(object):
     def desired_RP_angles(des_roll, des_pitch):
         # set desired roll and pitch angles
         self.desired_roll_pitch = np.array([des_roll, des_pitch])
-
-
-
-
-
-
