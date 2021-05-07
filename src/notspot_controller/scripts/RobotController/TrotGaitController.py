@@ -5,7 +5,9 @@
 import numpy as np
 import rospy
 from . GaitController import GaitController
+from . PIDController import PID_controller
 from RoboticsUtilities.Transformations import rotxyz,rotz
+
 
 class TrotGaitController(GaitController):
     def __init__(self, default_stance, stance_time, swing_time, time_step, use_imu):
@@ -13,7 +15,6 @@ class TrotGaitController(GaitController):
         self.use_button = True
         self.autoRest = True
         self.trotNeeded = True
-        self.compensation = 0.2
 
         contact_phases = np.array([[1, 1, 1, 0],  # 0: Leg swing
                                    [1, 0, 1, 1],  # 1: Moving stance forward
@@ -32,11 +33,17 @@ class TrotGaitController(GaitController):
         self.max_y_velocity = 0.015 #[m/s]
         self.max_yaw_rate = 0.6 #[rad/s]
 
+
         self.swingController = TrotSwingController(self.stance_ticks, self.swing_ticks, self.time_step,
                                                    self.phase_length, z_leg_lift, self.default_stance)
 
         self.stanceController = TrotStanceController(self.phase_length, self.stance_ticks, self.swing_ticks,
                                                      self.time_step, z_error_constant)
+
+
+        # TODO: tune kp, ki and kd
+        #                                     kp    ki    kd
+        self.pid_controller = PID_controller(0.15, 0.02, 0.002)
 
     def updateStateCommand(self, msg, state, command):
         command.velocity[0] = msg.axes[4] * self.max_x_velocity
@@ -44,31 +51,21 @@ class TrotGaitController(GaitController):
         command.yaw_rate = msg.axes[0] * self.max_yaw_rate
 
         if self.use_button:
-            if msg.buttons[3]:
+            if msg.buttons[7]:
                 self.use_imu = not self.use_imu
                 self.use_button = False
-                rospy.loginfo(f"Use imu: {self.use_imu}")
+                rospy.loginfo(f"Trot Gait Controller - Use roll/pitch compensation: {self.use_imu}")
+
+            elif msg.buttons[6]:
+                self.autoRest = not self.autoRest
+                if not self.autoRest:
+                    self.trotNeeded = True
+                self.use_button = False
+                rospy.loginfo(f"Trot Gait Controller - Use autorest: {self.autoRest}")
             
-            if msg.buttons[1]:
-                self.compensation += 0.001            
-                self.use_button = False
-                rospy.loginfo(f"Tilt compensation: {self.compensation}")
-
-            if msg.buttons[2]:
-                self.compensation -= 0.001
-                self.use_button = False
-                rospy.loginfo(f"Tilt compensation: {self.compensation}")
-        
         if not self.use_button:
-            if not(msg.buttons[1] or msg.buttons[2] or msg.buttons[3]):
+            if not(msg.buttons[6] or msg.buttons[7]):
                 self.use_button = True
-
-        if msg.buttons[6]:
-            self.autoRest = True
-
-        if msg.buttons[7]:
-            self.autoRest = False
-            self.trotNeeded = True
 
     def step(self, state, command):
         if self.autoRest:
@@ -93,11 +90,12 @@ class TrotGaitController(GaitController):
 
                 new_foot_locations[:, leg_index] = new_location
 
+            # tilt compensation
             if self.use_imu:
-                max_tilt = 0.45
+                compensation = self.pid_controller.run(state.imu_roll, state.imu_pitch)
+                roll_compensation = -compensation[0]
+                pitch_compensation = -compensation[1]
 
-                roll_compensation = self.compensation * np.clip(state.imu_roll,-max_tilt,max_tilt)
-                pitch_compensation = self.compensation * np.clip(state.imu_pitch,-max_tilt, max_tilt)
                 rot = rotxyz(roll_compensation,pitch_compensation,0)
                 new_foot_locations = np.matmul(rot,new_foot_locations)
             state.ticks += 1
