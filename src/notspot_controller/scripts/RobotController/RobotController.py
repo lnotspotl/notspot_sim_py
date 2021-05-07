@@ -43,6 +43,7 @@ class Robot(object):
             if self.state.behavior_state == BehaviorState.REST:
                 self.state.behavior_state = BehaviorState.TROT
                 self.currentController = self.trotGaitController
+                self.currentController.pid_controller.reset()
                 self.state.ticks = 0
             self.command.trot_event = False
 
@@ -62,6 +63,7 @@ class Robot(object):
         elif self.command.rest_event:
             self.state.behavior_state = BehaviorState.REST
             self.currentController = self.restController
+            self.currentController.pid_controller.reset()
             self.command.rest_event = False
 
     def joystick_command(self,msg):

@@ -27,6 +27,7 @@ class PS4_controller(object):
         self.last_joy.buttons = [0,0,0,0,0,0,0,0,0,0,0]
         self.last_send_time = rospy.Time.now()
 
+    def run(self):
         while not rospy.is_shutdown():
             self.publish_joy()
             self.rate.sleep()
@@ -35,11 +36,11 @@ class PS4_controller(object):
         if msg.buttons[4]:
             self.speed -= 0.1
             self.speed = clip(self.speed,0.,3.)
-            rospy.loginfo(f"Speed:{self.speed}")
+            rospy.loginfo(f"Joystick speed:{self.speed}")
         elif msg.buttons[5]:
             self.speed += 0.1
             self.speed = clip(self.speed,0.,3.)
-            rospy.loginfo(f"Speed:{self.speed}")
+            rospy.loginfo(f"Joystick speed:{self.speed}")
 
         self.target_joy.axes = msg.axes
         self.target_joy.buttons = msg.buttons
@@ -62,8 +63,10 @@ class PS4_controller(object):
         buttons_change = array_equal(self.last_joy.buttons, self.target_joy.buttons)
         axes_change = array_equal(self.last_joy.axes, self.target_joy.axes)
 
-        # new message
+        # if the desired value is the same as the last value, there's no
+        # need to publish the same message again
         if not(buttons_change and axes_change):
+            # new message
             joy = Joy()
             if not axes_change:
                 # do ramped_vel for every single axis
@@ -81,4 +84,5 @@ class PS4_controller(object):
 
 
 if __name__ == "__main__":
-    PS4_controller(speed = 1.5, rate = 50)
+    joystick = PS4_controller(speed = 1.5, rate = 50)
+    joystick.run()
