@@ -20,8 +20,8 @@ class RestController(object):
 
     def updateStateCommand(self, msg, state, command):
         # local body position
-        state.body_local_position[0] = msg.axes[7] * 0.11
-        state.body_local_position[1] = msg.axes[6] * 0.02
+        state.body_local_position[0] = msg.axes[7] * 0.04
+        state.body_local_position[1] = msg.axes[6] * 0.03
         state.body_local_position[2] = msg.axes[1] * 0.03
 
         # local body orientation
