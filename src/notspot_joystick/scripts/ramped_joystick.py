@@ -3,14 +3,12 @@
 
 import rospy
 from math import fabs
-from numpy import clip, array_equal
+from numpy import array_equal
 
 from sensor_msgs.msg import Joy
 
 class PS4_controller(object):
-    def __init__(self, speed, rate):
-        self.speed = speed
-
+    def __init__(self, rate):
         rospy.init_node("Joystick_ramped")
         rospy.Subscriber("joy", Joy, self.callback)
         self.publisher = rospy.Publisher("notspot_joy/joy_ramped", Joy, queue_size = 10)
@@ -27,20 +25,34 @@ class PS4_controller(object):
         self.last_joy.buttons = [0,0,0,0,0,0,0,0,0,0,0]
         self.last_send_time = rospy.Time.now()
 
+        self.use_button = True
+
+        self.speed_index = 2
+        self.available_speeds = [0.5, 1.0, 3.0, 4.5]
+
     def run(self):
         while not rospy.is_shutdown():
             self.publish_joy()
             self.rate.sleep()
 
     def callback(self, msg):
-        if msg.buttons[4]:
-            self.speed -= 0.1
-            self.speed = clip(self.speed,0.,3.)
-            rospy.loginfo(f"Joystick speed:{self.speed}")
-        elif msg.buttons[5]:
-            self.speed += 0.1
-            self.speed = clip(self.speed,0.,3.)
-            rospy.loginfo(f"Joystick speed:{self.speed}")
+        if self.use_button:
+            if msg.buttons[4]:
+                self.speed_index -= 1
+                if self.speed_index < 0:
+                    self.speed_index = len(self.available_speeds) - 1
+                rospy.loginfo(f"Joystick speed:{self.available_speeds[self.speed_index]}")
+                self.use_button = False
+            elif msg.buttons[5]:
+                self.speed_index += 1
+                if self.speed_index >= len(self.available_speeds):
+                    self.speed_index = 0
+                rospy.loginfo(f"Joystick speed:{self.available_speeds[self.speed_index]}")
+                self.use_button = False
+
+        if not self.use_button:
+            if not(msg.buttons[4] or msg.buttons[5]):
+                self.use_button = True
 
         self.target_joy.axes = msg.axes
         self.target_joy.buttons = msg.buttons
@@ -49,9 +61,12 @@ class PS4_controller(object):
         # This function was originally not written by me:
         # https://github.com/osrf/rosbook/blob/master/teleop_bot/keys_to_twist_with_ramps.py
         step = (t_now - t_prev).to_sec()
-        sign = self.speed if (v_target > v_prev) else -self.speed
+        sign = self.available_speeds[self.speed_index] if \
+                (v_target > v_prev) else -self.available_speeds[self.speed_index]
         error = fabs(v_target - v_prev)
-        if error < self.speed*step: # if we can get there within this timestep -> we're done.
+
+        # if we can get there within this timestep -> we're done.
+        if error < self.available_speeds[self.speed_index]*step:
             return v_target
         else:
             return v_prev + sign * step # take a step toward the target
@@ -84,5 +99,5 @@ class PS4_controller(object):
 
 
 if __name__ == "__main__":
-    joystick = PS4_controller(speed = 1.5, rate = 50)
+    joystick = PS4_controller(rate = 30)
     joystick.run()
