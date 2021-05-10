@@ -86,8 +86,11 @@ class PS4_controller(object):
             if not axes_change:
                 # do ramped_vel for every single axis
                 for i in range(len(self.target_joy.axes)): 
-                    joy.axes.append(self.ramped_vel(self.last_joy.axes[i],
-                            self.target_joy.axes[i],self.last_send_time,t_now))
+                    if self.target_joy.axes[i] == self.last_joy.axes[i]:
+                        joy.axes.append(self.last_joy.axes[i])
+                    else:
+                        joy.axes.append(self.ramped_vel(self.last_joy.axes[i],
+                                self.target_joy.axes[i],self.last_send_time,t_now))
             else:
                 joy.axes = self.last_joy.axes
 
