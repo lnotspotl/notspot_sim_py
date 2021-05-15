@@ -44,6 +44,9 @@ Gazebo.
 This is my first open-source project, so I'm not that experienced with github just yet.
 
 I'll be adding new stuff to this repository over time, so this is not the final version.
+This ROS package won't be updated much in the future, since it's being ported to C++.
+I'll make all the source code open-source after my high school graduation.
+
 I'd like to make all the 3D models open-source, so that anybody can build this robot at home.
 
 ## Credits
