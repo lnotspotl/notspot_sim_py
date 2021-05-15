@@ -42,8 +42,9 @@ class GaitController(object):
         """ Calculate, which part of the gait cycle the robot should be in """
         phase_time = ticks % self.phase_length
         phase_sum = 0
+        phase_ticks = self.phase_ticks
         for i in range(len(self.contact_phases[0])):
-            phase_sum += self.phase_ticks[i]
+            phase_sum += phase_ticks[i]
             if phase_time < phase_sum:
                 return i
         assert False
@@ -53,10 +54,11 @@ class GaitController(object):
             since the begining of the current phase """
         phase_time = ticks % self.phase_length
         phase_sum = 0
+        phase_ticks = self.phase_ticks
         for i in range(len(self.contact_phases[0])):
-            phase_sum += self.phase_ticks[i]
+            phase_sum += phase_ticks[i]
             if phase_time < phase_sum:
-                subphase_ticks = phase_time - phase_sum + self.phase_ticks[i]
+                subphase_ticks = phase_time - phase_sum + phase_ticks[i]
                 return subphase_ticks
         assert False
     

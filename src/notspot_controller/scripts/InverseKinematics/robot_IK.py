@@ -82,6 +82,6 @@ class InverseKinematics(object):
             angles.append(theta1)
             angles.append(theta3)
             angles.append(theta4)
-        
+       
         # Return joint angles in radians - FR, FL, RR, RL
         return angles

@@ -17,7 +17,6 @@ class RestController(object):
         self.use_button = True
         self.pid_controller.reset()
         
-
     def updateStateCommand(self, msg, state, command):
         # local body position
         state.body_local_position[0] = msg.axes[7] * 0.04
