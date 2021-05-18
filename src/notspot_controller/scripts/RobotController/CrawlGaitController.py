@@ -43,8 +43,8 @@ class CrawlGaitController(GaitController):
 
         new_foot_locations = np.zeros((3,4))
 
+        phase_index = self.phase_index(state.ticks)
         for leg_index in range(4):
-            phase_index = self.phase_index(state.ticks)
             contact_mode = contact_modes[leg_index]
             if contact_mode == 1:
                 if phase_index in (0,4) :
@@ -123,7 +123,7 @@ class CrawlSwingController(object):
         swing_height_ = self.swing_height(swing_prop)
         touchdown_location = self.raibert_touchdown_location(leg_index, command, shifted_left)
 
-        time_left = self.time_step* self.swing_ticks * (1.0 - swing_prop)
+        time_left = self.time_step * self.swing_ticks * (1.0 - swing_prop)
         
         velocity = (touchdown_location - foot_location) / float(time_left) *\
              np.array([1, 1, 0])     

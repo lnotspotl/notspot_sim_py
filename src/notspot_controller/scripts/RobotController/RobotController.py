@@ -51,6 +51,7 @@ class Robot(object):
             if self.state.behavior_state == BehaviorState.REST:
                 self.state.behavior_state = BehaviorState.CRAWL
                 self.currentController = self.crawlGaitController
+                self.currentController.first_cycle = True;
                 self.state.ticks = 0
             self.command.crawl_event = False
 
