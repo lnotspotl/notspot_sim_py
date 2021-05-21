@@ -28,7 +28,7 @@ class PS4_controller(object):
         self.use_button = True
 
         self.speed_index = 2
-        self.available_speeds = [0.5, 1.0, 3.0, 4.5]
+        self.available_speeds = [0.5, 1.0, 3.0, 4.0]
 
     def run(self):
         while not rospy.is_shutdown():

@@ -57,9 +57,9 @@ while not rospy.is_shutdown():
     dy = notspot_robot.state.body_local_position[1]
     dz = notspot_robot.state.body_local_position[2]
     
-    roll = notspot_robot.state.body_local_orientation[0]
-    pitch = notspot_robot.state.body_local_orientation[1]
-    yaw = notspot_robot.state.body_local_orientation[2]
+    roll = notspot_robot.state.body_local_orientation[0];
+    pitch = notspot_robot.state.body_local_orientation[1];
+    yaw = notspot_robot.state.body_local_orientation[2];
 
     try:
         joint_angles = inverseKinematics.inverse_kinematics(leg_positions,

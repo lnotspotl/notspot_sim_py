@@ -7,7 +7,7 @@ import numpy as np
 class StandController(object):
     def __init__(self, default_stance):
         self.def_stance = default_stance
-        self.max_reach = 0.05
+        self.max_reach = 0.065
 
         self.FR_X = 0.
         self.FR_Y = 0.
@@ -15,6 +15,7 @@ class StandController(object):
         self.FL_Y = 0.
 
     def updateStateCommand(self,msg,state,command):
+        state.body_local_position[0] = msg.axes[7] * 0.14;
         self.FR_X = msg.axes[1]
         self.FR_Y = msg.axes[0]
 
