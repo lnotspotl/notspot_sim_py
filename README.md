@@ -30,16 +30,16 @@ Rest controller, Stand Controller, Trot gait controller and Crawl gait controlle
 Gazebo.
 
 ### Rest Controller
-<img src="resources/rest_controller.gif" width="400">
+<img src="resources/1rest_controller.gif" width="400">
 
 ### Stand Controller
-<img src="resources/stand_controller.gif" width="400">
+<img src="resources/1stand_controller.gif" width="400">
 
 ### Trot Gait Controller
-<img src="resources/trot_gait_controller.gif" width="400">
+<img src="resources/1trot_gait_controller.gif" width="400">
 
 ### Crawl Gait Controller
-<img src="resources/crawl_gait_controller.gif" width="400">
+<img src="resources/1crawl_gait_controller.gif" width="400">
 
 
 ## Other notes
