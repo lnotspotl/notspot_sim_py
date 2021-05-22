@@ -1,7 +1,9 @@
-# Notspot robot simulation
+# Notspot robot simulation - Python version
 This repository contains all the files and code needed to simulate the notspot quadrupedal robot using [Gazebo](http://gazebosim.org/)  and [ROS](https://www.ros.org/).
 The software runs on [ROS noetic](http://wiki.ros.org/noetic) and [Ubuntu 20.04](http://www.releases.ubuntu.com/20.04/). If you want to use a different ROS version, you might have to do some changes to the source code.
 The robot is capable of walking, I have a bunch of videos on my [YouTube channel](https://www.youtube.com/channel/UCXlW03ZNOBB2UPEk8y_rGtA/videos). 
+
+If you are interested in the C++ version, make sure to check [this](https://github.com/lnotspotl/notspot_sim_cpp) repository out.
 
 <img src="resources/notspot_render_new1" width="233"> <img src="resources/notspot_render_new2" width="233"> <img src="resources/notspot_render_new3" width="233"> 
 
@@ -44,9 +46,6 @@ Gazebo.
 This is my first open-source project, so I'm not that experienced with github just yet.
 
 I'll be adding new stuff to this repository over time, so this is not the final version.
-This ROS package won't be updated much in the future, since it's being ported to C++.
-I'll make all the source code open-source after my high school graduation.
-
 I'd like to make all the 3D models open-source, so that anybody can build this robot at home.
 
 ## Credits
